@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ProgressButton">
+    </style>
+
+    <style name="ProgressButton.Clickable">
+        <!-- Attributes required to make a progress button clickable !-->
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="pinned">true</item>
+    </style>
+
+
+    <style name="ProgressButton.Clickable.4">
+        <!-- A styled progress button !-->
+        <!-- You can also change the drawables (pinned, unpinned and/or shadow) !-->
+        <!-- <item name="pinnedDrawable">@drawable/pinned_custom</item> !-->
+        <item name="circleColor">#ffd8c9ff</item>
+        <item name="progressColor">#ffff251e</item>
+    </style>
+
+</resources>
