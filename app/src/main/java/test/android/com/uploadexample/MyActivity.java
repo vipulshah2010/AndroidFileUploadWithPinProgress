@@ -6,15 +6,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
-import com.f2prateek.progressbutton.ProgressButton;
-
 import java.io.File;
 
+import circularprogressbar.CircularProgressBar;
 import upload.AbstractUploadServiceReceiver;
 import upload.UploadRequest;
 import upload.UploadService;
@@ -23,7 +23,8 @@ import upload.UploadService;
 public class MyActivity extends Activity {
 
     private static final String TAG = "upload";
-    private ProgressButton progressButton;
+    private CircularProgressBar circularProgressBar;
+    private int i;
 
     private final AbstractUploadServiceReceiver uploadReceiver =
             new AbstractUploadServiceReceiver() {
@@ -32,7 +33,7 @@ public class MyActivity extends Activity {
                 public void onProgress(String uploadId, int progress) {
                     Log.i(TAG, "The progress of the upload with ID "
                             + uploadId + " is: " + progress);
-                    progressButton.setProgress(progress);
+
                 }
 
                 @Override
@@ -56,7 +57,39 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
-        progressButton=(ProgressButton)findViewById(R.id.pin_progress_1);
+        circularProgressBar=(CircularProgressBar)findViewById(R.id.progress);
+
+        new Thread()
+        {
+
+            @Override
+            public void run() {
+                for(i=10;i<=100;i++)
+                {
+                    SystemClock.sleep(300);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            circularProgressBar.setProgress(i);
+                            if(i<100)
+                            {
+                                circularProgressBar.setTitle(i+" %");
+                            }
+                            else
+                            {
+
+                                circularProgressBar.setTitle("done");
+                            }
+                        }
+                    });
+
+
+                }
+            }
+        }.start();
+
+
     }
 
     public void pickFile(View view) {

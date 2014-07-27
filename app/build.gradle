@@ -23,5 +23,4 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.nononsenseapps:filepicker:+'
     compile 'com.android.support:support-v4:19.0.+'
-    compile 'com.f2prateek.progressbutton:progressbutton:2.1.0@aar'
 }
